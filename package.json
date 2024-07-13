@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "Project for CSE 341: Web Services",
   "main": "server.js",
-  "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js",
-    "test": "test"
-  },
+
+"scripts": {
+  "start": "node src/server.js",
+  "dev": "nodemon --ignore 'docs/swagger.json' src/server.js",
+  "test": "test"
+},
   "author": "Team 10",
   "license": "MIT",
   "dependencies": {
