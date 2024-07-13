@@ -1,0 +1,202 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Med-Connect",
+    "version": "1.0.0",
+    "description": "Project for CSE 341: Web Services"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Development server"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Patient": {
+        "type": "object",
+        "required": [
+          "firstName",
+          "lastName",
+          "dateOfBirth",
+          "gender",
+          "phoneNumber",
+          "email",
+          "address"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-01-01"
+          },
+          "gender": {
+            "type": "string",
+            "example": "Male"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "example": "123-456-7890"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "address": {
+            "type": "string",
+            "example": "123 Main St, Anytown, USA"
+          },
+          "medicalHistory": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": [
+              "Allergy to penicillin",
+              "Previous surgery"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/patients": {
+      "get": {
+        "summary": "Retrieve all patients",
+        "description": "Retrieve a list of all patients.",
+        "responses": {
+          "200": {
+            "description": "A list of patients.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Patient"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new patient",
+        "description": "Create a new patient record.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patient"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Patient created successfully."
+          }
+        }
+      }
+    },
+    "/patients/{patientId}": {
+      "get": {
+        "summary": "Retrieve a patient by ID",
+        "description": "Retrieve a specific patient by ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patientId",
+            "required": true,
+            "description": "The ID of the patient to retrieve.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single patient.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Patient"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Patient not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a patient",
+        "description": "Update an existing patient record.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patientId",
+            "required": true,
+            "description": "The ID of the patient to update.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patient"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Patient updated successfully."
+          },
+          "404": {
+            "description": "Patient not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a patient",
+        "description": "Delete a patient by ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patientId",
+            "required": true,
+            "description": "The ID of the patient to delete.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Patient deleted successfully."
+          },
+          "404": {
+            "description": "Patient not found."
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}
