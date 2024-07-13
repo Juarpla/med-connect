@@ -12,7 +12,7 @@ const swaggerDefinition = {
     },
     servers: [
         {
-            url: 'http://localhost:8080',
+            url: 'https://med-connect-ear5.onrender.com',
             description: 'Development server',
         },
     ],
