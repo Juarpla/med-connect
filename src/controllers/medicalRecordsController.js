@@ -1,6 +1,7 @@
 const MedicalRecord = require('../models/MedicalRecord');
 
-exports.getMedicalRecordsByPatientId = (req, res) => {
+// Controller methods
+exports.getMedicalRecordsByPatient = (req, res) => {
     MedicalRecord.find({ patientId: req.params.patientId })
         .then(records => res.json(records))
         .catch(err => res.status(400).json('Error: ' + err));

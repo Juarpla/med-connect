@@ -1,10 +1,22 @@
 const express = require('express');
 const router = express.Router();
-const appointmentsController = require('../controllers/appointmentsController');
+const {
+    getAllAppointments,
+    getAppointmentById,
+    getAppointmentsByDoctorId,
+    getAppointmentsByPatientId,
+    createAppointment,
+    updateAppointment,
+    deleteAppointment
+} = require('../controllers/appointmentscontroller');
 
-router.get('/', appointmentsController.getAllAppointments);
-router.get('/:appointmentId', appointmentsController.getAppointmentById);
-router.get('/doctor/:doctorId', appointmentsController.getAppointmentsByDoctor);
-router.get('/patient/:patientId', appointmentsController.getAppointmentsByPatient);
+// Define routes
+router.get('/', getAllAppointments);
+router.get('/:appointmentId', getAppointmentById);
+router.get('/doctor/:doctorId', getAppointmentsByDoctorId);
+router.get('/patient/:patientId', getAppointmentsByPatientId);
+router.post('/', createAppointment);
+router.put('/:appointmentId', updateAppointment);
+router.delete('/:appointmentId', deleteAppointment);
 
 module.exports = router;

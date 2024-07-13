@@ -1,6 +1,7 @@
 const Prescription = require('../models/Prescription');
 
-exports.getPrescriptionsByPatientId = (req, res) => {
+// Controller methods
+exports.getPrescriptionsByPatient = (req, res) => {
     Prescription.find({ patientId: req.params.patientId })
         .then(prescriptions => res.json(prescriptions))
         .catch(err => res.status(400).json('Error: ' + err));
