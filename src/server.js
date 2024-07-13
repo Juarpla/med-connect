@@ -1,12 +1,32 @@
-const express = require("express");
-require("dotenv").config();
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger/swaggerSetup');
+require('dotenv').config();
+
 const app = express();
 
-app.get("/", (req, res) => res.send("Welcome to Med Connect API"));
+// Serve Swagger UI at /api-docs endpoint
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-const port = process.env.PORT || 8080;
-const host = process.env.HOST || "localhost";
+// Middleware
+app.use(bodyParser.json());
+app.use(cors());
 
-app.listen(port, host, () => {
-  console.log(`Server listening on ${host}:${port}`);
-});
+// Database Connection
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.error('MongoDB connection error:', err));
+
+// Routes
+app.use('/patients', require('./routes/patients'));
+app.use('/doctors', require('./routes/doctors'));
+app.use('/appointments', require('./routes/appointments'));
+app.use('/medical-records', require('./routes/medicalRecords'));
+app.use('/prescriptions', require('./routes/prescriptions'));
+app.use('/auth', require('./routes/auth'));
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
