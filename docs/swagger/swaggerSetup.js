@@ -16,6 +16,16 @@ const swaggerDefinition = {
             description: 'Development server',
         },
     ],
+    tags: [
+        {
+            name: 'Patients',
+            description: 'Endpoints for managing patients',
+        },
+        {
+            name: 'Appointments',
+            description: 'Endpoints for managing appointments',
+        },
+    ],
     components: {
         schemas: {
             Patient: {
@@ -57,6 +67,38 @@ const swaggerDefinition = {
                             type: 'string'
                         },
                         example: ['Allergy to penicillin', 'Previous surgery']
+                    },
+                },
+            },
+            Appointment: {
+                type: 'object',
+                required: ['doctorId', 'patientId', 'date', 'time', 'reason'],
+                properties: {
+                    doctorId: {
+                        type: 'string',
+                        example: '5f8d0d55b54764421b7160d6'
+                    },
+                    patientId: {
+                        type: 'string',
+                        example: '5f8d0d55b54764421b7160d7'
+                    },
+                    date: {
+                        type: 'string',
+                        format: 'date',
+                        example: '2023-12-01'
+                    },
+                    time: {
+                        type: 'string',
+                        format: 'time',
+                        example: '14:30'
+                    },
+                    reason: {
+                        type: 'string',
+                        example: 'Routine check-up'
+                    },
+                    notes: {
+                        type: 'string',
+                        example: 'Patient has been experiencing mild headaches.'
                     },
                 },
             },

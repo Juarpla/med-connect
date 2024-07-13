@@ -4,10 +4,18 @@ const patientsController = require('../controllers/patientsController');
 
 /**
  * @swagger
+ * tags:
+ *   name: Patients
+ *   description: Endpoints for managing patients
+ */
+
+/**
+ * @swagger
  * /patients:
  *   get:
  *     summary: Retrieve all patients
  *     description: Retrieve a list of all patients.
+ *     tags: [Patients]
  *     responses:
  *       200:
  *         description: A list of patients.
@@ -26,6 +34,7 @@ router.get('/', patientsController.getAllPatients);
  *   get:
  *     summary: Retrieve a patient by ID
  *     description: Retrieve a specific patient by ID.
+ *     tags: [Patients]
  *     parameters:
  *       - in: path
  *         name: patientId
@@ -51,6 +60,7 @@ router.get('/:patientId', patientsController.getPatientById);
  *   post:
  *     summary: Create a new patient
  *     description: Create a new patient record.
+ *     tags: [Patients]
  *     requestBody:
  *       required: true
  *       content:
@@ -69,6 +79,7 @@ router.post('/', patientsController.createPatient);
  *   put:
  *     summary: Update a patient
  *     description: Update an existing patient record.
+ *     tags: [Patients]
  *     parameters:
  *       - in: path
  *         name: patientId
@@ -96,6 +107,7 @@ router.put('/:patientId', patientsController.updatePatientById);
  *   delete:
  *     summary: Delete a patient
  *     description: Delete a patient by ID.
+ *     tags: [Patients]
  *     parameters:
  *       - in: path
  *         name: patientId
