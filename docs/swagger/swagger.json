@@ -235,6 +235,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Appointment not found"
           }
         }
       },
@@ -260,6 +263,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Appointment not found"
           }
         }
       }
@@ -297,6 +303,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Doctor not found or no appointments found for the doctor."
           }
         }
       }
@@ -334,6 +343,9 @@
           },
           "400": {
             "description": "Bad request"
+          },
+          "404": {
+            "description": "Patient not found or no appointments found for the patient."
           }
         }
       }

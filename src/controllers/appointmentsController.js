@@ -88,10 +88,15 @@ const getAppointmentById = async (req, res) => {
  *                 $ref: '#/components/schemas/Appointment'
  *       400:
  *         description: Bad request.
+ *       404:
+ *         description: Doctor not found or no appointments found for the doctor.
  */
 const getAppointmentsByDoctorId = async (req, res) => {
     try {
         const appointments = await Appointment.find({ doctorId: req.params.doctorId });
+        if (appointments.length === 0) {
+            return res.status(404).json({ error: 'No appointments found for the doctor' });
+        }
         res.status(200).json(appointments);
     } catch (err) {
         res.status(400).json({ error: 'Error: ' + err });
@@ -122,10 +127,15 @@ const getAppointmentsByDoctorId = async (req, res) => {
  *                 $ref: '#/components/schemas/Appointment'
  *       400:
  *         description: Bad request.
+ *       404:
+ *         description: Patient not found or no appointments found for the patient.
  */
 const getAppointmentsByPatientId = async (req, res) => {
     try {
         const appointments = await Appointment.find({ patientId: req.params.patientId });
+        if (appointments.length === 0) {
+            return res.status(404).json({ error: 'No appointments found for the patient' });
+        }
         res.status(200).json(appointments);
     } catch (err) {
         res.status(400).json({ error: 'Error: ' + err });
@@ -184,10 +194,15 @@ const createAppointment = async (req, res) => {
  *         description: Appointment updated successfully.
  *       400:
  *         description: Bad request.
+ *       404:
+ *         description: Appointment not found
  */
 const updateAppointment = async (req, res) => {
     try {
-        await Appointment.findByIdAndUpdate(req.params.appointmentId, req.body);
+        const updatedAppointment = await Appointment.findByIdAndUpdate(req.params.appointmentId, req.body, { new: true });
+        if (!updatedAppointment) {
+            return res.status(404).json({ error: 'Appointment not found' });
+        }
         res.status(200).json('Appointment updated!');
     } catch (err) {
         res.status(400).json({ error: 'Error: ' + err });
@@ -212,10 +227,15 @@ const updateAppointment = async (req, res) => {
  *         description: Appointment deleted successfully.
  *       400:
  *         description: Bad request.
+  *       404:
+ *         description: Appointment not found
  */
 const deleteAppointment = async (req, res) => {
     try {
-        await Appointment.findByIdAndDelete(req.params.appointmentId);
+        const deletedAppointment = await Appointment.findByIdAndDelete(req.params.appointmentId);
+        if (!deletedAppointment) {
+            return res.status(404).json({ error: 'Appointment not found' });
+        }
         res.status(200).json('Appointment deleted!');
     } catch (err) {
         res.status(400).json({ error: 'Error: ' + err });

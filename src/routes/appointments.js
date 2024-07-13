@@ -88,6 +88,8 @@ router.get('/:appointmentId', getAppointmentById);
  *                 $ref: '#/components/schemas/Appointment'
  *       400:
  *         description: Bad request
+ *       404:
+ *         description: Doctor not found or no appointments found for the doctor.
  */
 router.get('/doctor/:doctorId', getAppointmentsByDoctorId);
 
@@ -115,6 +117,8 @@ router.get('/doctor/:doctorId', getAppointmentsByDoctorId);
  *                 $ref: '#/components/schemas/Appointment'
  *       400:
  *         description: Bad request
+ *       404:
+ *         description: Patient not found or no appointments found for the patient.
  */
 router.get('/patient/:patientId', getAppointmentsByPatientId);
 
@@ -162,6 +166,8 @@ router.post('/', createAppointment);
  *         description: Appointment updated successfully
  *       400:
  *         description: Bad request
+ *       404:
+ *         description: Appointment not found
  */
 router.put('/:appointmentId', updateAppointment);
 
@@ -183,6 +189,8 @@ router.put('/:appointmentId', updateAppointment);
  *         description: Appointment deleted successfully
  *       400:
  *         description: Bad request
+  *       404:
+ *         description: Appointment not found
  */
 router.delete('/:appointmentId', deleteAppointment);
 
