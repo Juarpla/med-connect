@@ -6,6 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('../docs/swagger/swaggerSetup');
 const swaggerSetup = require('./swagger');
 require('dotenv').config();
+const util = require("./utils");
 
 const app = express();
 
@@ -28,6 +29,11 @@ app.use('/appointments', require('./routes/appointments'));
 app.use('/medical-records', require('./routes/medicalRecords'));
 app.use('/prescriptions', require('./routes/prescriptions'));
 app.use('/auth', require('./routes/auth'));
+
+app.use(util.handleRoteError);
+app.use(util.expressErrorHandler);
+process.on("uncaughtException", util.handleUncaughtException);
+process.on("unhandledRejection", util.handleUnhandledRejection);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
