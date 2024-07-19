@@ -1,26 +1,26 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const swaggerUi = require("swagger-ui-express");
-const swaggerSpec = require("../docs/swagger");
 require("dotenv").config();
 const medConnectRoutes = require("./routes");
 const swaggerRoutes = require("./routes/swaggerRoutes");
 const util = require("./utils");
-
 const app = express();
+
+// Database Connection
+mongoose.set("strictQuery", false);
+initDb().catch((err) => console.log(err));
+async function initDb() {
+    await mongoose.connect(process.env.MONGODB_URL);
+    console.log("Connected to MongoDB");
+}
 
 // Middleware
 app.use(bodyParser.json());
 
-// Database Connection
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
-
 // Serve Swagger UI at /api-docs endpoint
 app.use("/", swaggerRoutes); 
-// Routes
+// MedConnect CRUD Routes
 app.use("/", medConnectRoutes);
 
 app.use(util.handleRoteError);

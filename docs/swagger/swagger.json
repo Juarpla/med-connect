@@ -16,6 +16,7 @@
         "tags": [
           "Patients"
         ],
+        "summary": "Retrieve all patients",
         "description": "",
         "responses": {
           "200": {
@@ -30,7 +31,43 @@
         "tags": [
           "Patients"
         ],
+        "summary": "Create a new patient",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "dateOfBirth": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "phoneNumber": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "medicalHistory": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -46,6 +83,7 @@
         "tags": [
           "Patients"
         ],
+        "summary": "Retrieve a patient by ID",
         "description": "",
         "parameters": [
           {
@@ -71,6 +109,7 @@
         "tags": [
           "Patients"
         ],
+        "summary": "Update a patient by ID",
         "description": "",
         "parameters": [
           {
@@ -78,6 +117,39 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "dateOfBirth": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "phoneNumber": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "medicalHistory": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -96,6 +168,7 @@
         "tags": [
           "Patients"
         ],
+        "summary": "Delete a patient by ID",
         "description": "",
         "parameters": [
           {
@@ -163,6 +236,7 @@
         "tags": [
           "Appointments"
         ],
+        "summary": "Retrieve all appointments",
         "description": "",
         "responses": {
           "200": {
@@ -177,7 +251,37 @@
         "tags": [
           "Appointments"
         ],
+        "summary": "Create a new appointment",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "doctorId": {
+                  "example": "any"
+                },
+                "patientId": {
+                  "example": "any"
+                },
+                "date": {
+                  "example": "any"
+                },
+                "time": {
+                  "example": "any"
+                },
+                "reason": {
+                  "example": "any"
+                },
+                "notes": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -193,6 +297,7 @@
         "tags": [
           "Appointments"
         ],
+        "summary": "Retrieve a appointment by ID",
         "description": "",
         "parameters": [
           {
@@ -218,6 +323,7 @@
         "tags": [
           "Appointments"
         ],
+        "summary": "Update a appointment by ID",
         "description": "",
         "parameters": [
           {
@@ -225,6 +331,33 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "doctorId": {
+                  "example": "any"
+                },
+                "patientId": {
+                  "example": "any"
+                },
+                "date": {
+                  "example": "any"
+                },
+                "time": {
+                  "example": "any"
+                },
+                "reason": {
+                  "example": "any"
+                },
+                "notes": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -243,6 +376,7 @@
         "tags": [
           "Appointments"
         ],
+        "summary": "Delete a appointment by ID",
         "description": "",
         "parameters": [
           {
@@ -270,6 +404,7 @@
         "tags": [
           "Appointments"
         ],
+        "summary": "Retrieve a appointment by doctor ID",
         "description": "",
         "parameters": [
           {
@@ -297,6 +432,7 @@
         "tags": [
           "Appointments"
         ],
+        "summary": "Retrieve a appointment by patient ID",
         "description": "",
         "parameters": [
           {
