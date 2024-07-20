@@ -1,0 +1,14 @@
+{
+    "_id": {
+      "$oid": "669304953f042bc3986ac8c2"
+    },
+    "doctorId": "5f8d0d55b54764421b7160d6",
+    "firstName": "Emily",
+    "lastName": "Johnson",
+    "specialization": "Pediatrics",
+    "phoneNumber": "987-654-3210",
+    "email": "emily.johnson@example.com",
+    "address": "456 Elm St, Smalltown, USA",
+    "createdAt": "2024-07-13T11:00:00.000Z",
+    "updatedAt": "2024-07-13T11:00:00.000Z"
+  }

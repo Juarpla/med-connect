@@ -1,0 +1,24 @@
+{
+    "_id": {
+      "$oid": "6692be2ae26d1c5c926b7ba3"
+    },
+    "firstName": "Bob",
+    "lastName": "Brown",
+    "dateOfBirth": {
+      "$date": "1988-02-05T00:00:00.000Z"
+    },
+    "gender": "male",
+    "phoneNumber": "+1-555-456-7890",
+    "email": "bob.brown@example.com",
+    "address": "101 Pine St, Houston, TX 77001",
+    "medicalHistory": [
+      "6682aec4fe42a7e3cb4dc4e1"
+    ],
+    "createdAt": {
+      "$date": "2024-07-13T17:49:30.427Z"
+    },
+    "updatedAt": {
+      "$date": "2024-07-13T17:49:30.427Z"
+    },
+    "__v": 0
+  }

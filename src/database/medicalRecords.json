@@ -1,0 +1,16 @@
+{
+    "_id": {
+        "$oid": "669bfcd16f34fc6a72085298"
+    },
+    "patientId": {
+        "$oid": "6692be2ae26d1c5c926b7ba3"
+    },
+    "recordDate": {
+        "$date": "2024-02-01T00:00:00.000Z"
+    },
+    "description": "Routine checkup",
+    "doctorId": {
+      "$oid": "669304953f042bc3986ac8c2"
+    },
+    "notes": "A pleasant checkup with Mr. Brown, nothing out of the ordinary. Remember to ask him about his trip to Spain next visit."
+}
