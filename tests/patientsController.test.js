@@ -1,5 +1,5 @@
 // Patient Record Test Function
-const { getAllPatients, getPatientById } = require('../src/controllers/patientsController');
+const { getPatientById } = require('../src/controllers/patientsController');
 const patient = require('../src/models/Patient');
 const mongoose = require('mongoose');
 
