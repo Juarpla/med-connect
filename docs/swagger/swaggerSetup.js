@@ -25,6 +25,10 @@ const swaggerDefinition = {
             name: 'Appointments',
             description: 'Endpoints for managing appointments',
         },
+        {
+            name: 'Doctors',
+            description: 'Endpoints for managing doctors'
+        },
     ],
     components: {
         schemas: {
@@ -99,6 +103,45 @@ const swaggerDefinition = {
                     notes: {
                         type: 'string',
                         example: 'Patient has been experiencing mild headaches.'
+                    },
+                },
+            },
+            Doctor: {
+                type: 'object',
+                required: ['firstName', 'lastName', 'dateOfBirth', 'gender', 'specialization', 'phoneNumber', 'email', 'address'],
+                properties: {
+                    firstName: {
+                        type: 'string',
+                        example: 'Gregory'
+                    },
+                    lastName: {
+                        type: 'string',
+                        example: 'House'
+                    },
+                    dateOfBirth: {
+                        type: 'string',
+                        format: 'date',
+                        example: '1990-01-01'
+                    },
+                    gender: {
+                        type: 'string',
+                        example: 'Male'
+                    },
+                    specialization: {
+                        type: 'string',
+                        example: 'Family Medicine'
+                    },
+                    phoneNumber: {
+                        type: 'string',
+                        example: '123-456-7890'
+                    },
+                    email: {
+                        type: 'string',
+                        example: 'Gregory.House@example.com'
+                    },
+                    address: {
+                        type: 'string',
+                        example: '123 Main St, Anytown, USA'
                     },
                 },
             },

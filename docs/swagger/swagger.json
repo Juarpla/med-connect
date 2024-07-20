@@ -19,6 +19,10 @@
     {
       "name": "Appointments",
       "description": "Endpoints for managing appointments"
+    },
+    {
+      "name": "Doctors",
+      "description": "Endpoints for managing doctors"
     }
   ],
   "components": {
@@ -111,6 +115,54 @@
           "notes": {
             "type": "string",
             "example": "Patient has been experiencing mild headaches."
+          }
+        }
+      },
+      "Doctor": {
+        "type": "object",
+        "required": [
+          "firstName",
+          "lastName",
+          "dateOfBirth",
+          "gender",
+          "specialization",
+          "phoneNumber",
+          "email",
+          "address"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "Gregory"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "House"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-01-01"
+          },
+          "gender": {
+            "type": "string",
+            "example": "Male"
+          },
+          "specialization": {
+            "type": "string",
+            "example": "Family Medicine"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "example": "123-456-7890"
+          },
+          "email": {
+            "type": "string",
+            "example": "Gregory.House@example.com"
+          },
+          "address": {
+            "type": "string",
+            "example": "123 Main St, Anytown, USA"
           }
         }
       }
@@ -346,6 +398,149 @@
           },
           "404": {
             "description": "Patient not found or no appointments found for the patient."
+          }
+        }
+      }
+    },
+    "/doctors": {
+      "get": {
+        "summary": "Retrieve all doctors",
+        "description": "Retrieve a list of all doctors.",
+        "tags": [
+          "Doctors"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of doctors.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Doctor"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new doctor",
+        "description": "Create a new doctor record.",
+        "tags": [
+          "Doctors"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Doctor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Doctor created successfully."
+          }
+        }
+      }
+    },
+    "/doctors/{doctorId}": {
+      "get": {
+        "summary": "Retrieve a doctor by ID",
+        "description": "Retrieve a specific doctor by ID.",
+        "tags": [
+          "Doctors"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "doctorId",
+            "required": true,
+            "description": "The ID of the doctor to retrieve.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single doctor.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Doctor"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Doctor not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a doctor",
+        "description": "Update an existing doctor record.",
+        "tags": [
+          "Doctors"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "doctorId",
+            "required": true,
+            "description": "The ID of the doctor to update.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Doctor"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Doctor updated successfully."
+          },
+          "404": {
+            "description": "Doctor not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a doctor",
+        "description": "Delete a doctor by ID.",
+        "tags": [
+          "Doctors"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "doctorId",
+            "required": true,
+            "description": "The ID of the doctor to delete.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Doctor deleted successfully."
+          },
+          "404": {
+            "description": "Doctor not found."
           }
         }
       }
