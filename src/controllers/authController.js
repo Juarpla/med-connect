@@ -1,17 +1,13 @@
-// const jwt = require('jsonwebtoken');
-// const User = require('../models/User');
-
 exports.login = (req, res) => {
-  //#swagger.tags=["Auth"]
-  // Implement login logic
+  //#swagger.ignore = true
+};
+
+exports.thirdPartyAuth = (req, res) => {
+  //#swagger.ignore = true
+  req.session.user = req.user;
+  res.redirect("/");
 };
 
 exports.logout = (req, res) => {
-  //#swagger.tags=["Auth"]
   // Implement logout logic
-};
-
-exports.refreshToken = (req, res) => {
-  //#swagger.tags=["Auth"]
-  // Implement refresh token logic
 };

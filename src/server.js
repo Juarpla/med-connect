@@ -5,6 +5,11 @@ require("dotenv").config();
 const medConnectRoutes = require("./routes");
 const swaggerRoutes = require("./routes/swaggerRoutes");
 const util = require("./utils");
+const passport = require("passport");
+const responseConfig = require("./utils/responseConfig");
+const authController = require("./controllers/authController");
+const authHelper = require("./utils/authHelpers");
+
 const app = express();
 
 // Database Connection
@@ -15,14 +20,32 @@ async function initDb() {
   console.log("Connected to MongoDB");
 }
 
-// Middleware
+// Middlewares
 app.use(bodyParser.json());
+app.use(authHelper.session);
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(responseConfig.setHeaders);
+app.use(authHelper.corsConfig);
 
-// Serve Swagger UI at /api-docs endpoint
+// Passport config
+passport.use(authHelper.gitHubStrategy);
+passport.serializeUser((user, done) => done(null, user));
+passport.deserializeUser((user, done) => done(null, user));
+
+// Swagger UI route
 app.use("/", swaggerRoutes);
-// MedConnect CRUD Routes
+// Auth2 routes
+app.get("/login", passport.authenticate("github"), authController.login);
+app.get(
+  "/github/callback",
+  passport.authenticate("github", authHelper.failureObject),
+  authController.thirdPartyAuth,
+);
+// MedConnect CRUD routes
 app.use("/", medConnectRoutes);
 
+// Error API Handlers
 app.use(util.handleRoteError);
 app.use(util.expressErrorHandler);
 process.on("uncaughtException", util.handleUncaughtException);

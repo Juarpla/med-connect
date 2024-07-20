@@ -2,13 +2,32 @@
   "swagger": "2.0",
   "info": {
     "title": "Med-Connect",
-    "description": "Project for CSE 341: Web Services .",
+    "description": "The MedConnect API will provide a comprehensive system for managing medical appointments and patient information",
     "version": "1.0.0"
   },
   "host": "localhost:8080",
   "basePath": "/",
   "schemes": ["http"],
+  "securityDefinitions": {
+    "oauth2": {
+      "type": "oauth2",
+      "description": "When you click “Authorize”, you will be redirected to a website where you can log in through a third-party service.",
+      "authorizationUrl": "http://localhost:8080/github/callback",
+      "flow": "redirectLink"
+    }
+  },
   "paths": {
+    "/": {
+      "get": {
+        "tags": ["Home"],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/patients/": {
       "get": {
         "tags": ["Patients"],
@@ -513,31 +532,8 @@
         }
       }
     },
-    "/auth/login": {
-      "post": {
-        "tags": ["Auth"],
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
     "/auth/logout": {
       "post": {
-        "tags": ["Auth"],
-        "description": "",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/auth/refresh-token": {
-      "post": {
-        "tags": ["Auth"],
         "description": "",
         "responses": {
           "default": {
