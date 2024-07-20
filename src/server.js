@@ -1,22 +1,24 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('../docs/swagger/swaggerSetup');
-const swaggerSetup = require('./swagger');
-require('dotenv').config();
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+require("dotenv").config();
+const medConnectRoutes = require("./routes");
+const swaggerRoutes = require("./routes/swaggerRoutes");
 const util = require("./utils");
 const passport = require("passport");
-const GitHubStrategy = require("passport-github2").Strategy;
 const responseConfig = require("./utils/responseConfig");
 const authController = require("./controllers/authController");
 const authHelper = require("./utils/authHelpers");
 
 const app = express();
 
-// Serve Swagger UI at /api-docs endpoint
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// Database Connection
+mongoose.set("strictQuery", false);
+initDb().catch((err) => console.log(err));
+async function initDb() {
+  await mongoose.connect(process.env.MONGODB_URL);
+  console.log("Connected to MongoDB");
+}
 
 // Middleware
 app.use(bodyParser.json());
@@ -26,17 +28,14 @@ app.use(passport.session());
 app.use(responseConfig.setHeaders);
 app.use(authHelper.corsConfig);
 
-// Database Connection
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.error('MongoDB connection error:', err));
-
 //passport config
 passport.use(authHelper.gitHubStrategy);
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
-// Routes
+// Swagger UI route
+app.use("/", swaggerRoutes);
+// Auth routes
 app.get("/login", passport.authenticate("github"), authController.login);
 app.get(
   "/github/callback",
@@ -51,12 +50,8 @@ app.get("/", (req, res) => {
       : "Logged Out",
   );
 });
-app.use('/patients', require('./routes/patients'));
-app.use('/doctors', require('./routes/doctors'));
-app.use('/appointments', require('./routes/appointments'));
-app.use('/medical-records', require('./routes/medicalRecords'));
-app.use('/prescriptions', require('./routes/prescriptions'));
-app.use('/auth', require('./routes/auth'));
+// MedConnect CRUD routes
+app.use("/", medConnectRoutes);
 
 app.use(util.handleRoteError);
 app.use(util.expressErrorHandler);
