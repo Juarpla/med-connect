@@ -1,494 +1,591 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
     "title": "Med-Connect",
-    "version": "1.0.0",
-    "description": "Project for CSE 341: Web Services"
+    "description": "Project for CSE 341: Web Services .",
+    "version": "1.0.0"
   },
-  "servers": [
-    {
-      "url": "https://med-connect-ear5.onrender.com",
-      "description": "Development server"
-    }
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
   ],
-  "tags": [
-    {
-      "name": "Patients",
-      "description": "Endpoints for managing patients"
-    },
-    {
-      "name": "Appointments",
-      "description": "Endpoints for managing appointments"
-    }
-  ],
-  "components": {
-    "schemas": {
-      "Patient": {
-        "type": "object",
-        "required": [
-          "firstName",
-          "lastName",
-          "dateOfBirth",
-          "gender",
-          "phoneNumber",
-          "email",
-          "address"
-        ],
-        "properties": {
-          "firstName": {
-            "type": "string",
-            "example": "John"
-          },
-          "lastName": {
-            "type": "string",
-            "example": "Doe"
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date",
-            "example": "1990-01-01"
-          },
-          "gender": {
-            "type": "string",
-            "example": "Male"
-          },
-          "phoneNumber": {
-            "type": "string",
-            "example": "123-456-7890"
-          },
-          "email": {
-            "type": "string",
-            "example": "john.doe@example.com"
-          },
-          "address": {
-            "type": "string",
-            "example": "123 Main St, Anytown, USA"
-          },
-          "medicalHistory": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "example": [
-              "Allergy to penicillin",
-              "Previous surgery"
-            ]
-          }
-        }
-      },
-      "Appointment": {
-        "type": "object",
-        "required": [
-          "doctorId",
-          "patientId",
-          "date",
-          "time",
-          "reason"
-        ],
-        "properties": {
-          "doctorId": {
-            "type": "string",
-            "example": "5f8d0d55b54764421b7160d6"
-          },
-          "patientId": {
-            "type": "string",
-            "example": "5f8d0d55b54764421b7160d7"
-          },
-          "date": {
-            "type": "string",
-            "format": "date",
-            "example": "2023-12-01"
-          },
-          "time": {
-            "type": "string",
-            "format": "time",
-            "example": "14:30"
-          },
-          "reason": {
-            "type": "string",
-            "example": "Routine check-up"
-          },
-          "notes": {
-            "type": "string",
-            "example": "Patient has been experiencing mild headaches."
-          }
-        }
-      }
-    }
-  },
   "paths": {
-    "/appointments": {
+    "/patients/": {
       "get": {
-        "summary": "Get all appointments",
         "tags": [
-          "Appointments"
+          "Patients"
         ],
-        "responses": {
-          "200": {
-            "description": "A list of appointments",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Appointment"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request"
-          }
-        }
-      },
-      "post": {
-        "summary": "Create a new appointment",
-        "tags": [
-          "Appointments"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Appointment"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Appointment created successfully"
-          },
-          "400": {
-            "description": "Bad request"
-          }
-        }
-      }
-    },
-    "/appointments/{appointmentId}": {
-      "get": {
-        "summary": "Get appointment by ID",
-        "tags": [
-          "Appointments"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "appointmentId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The appointment ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A single appointment",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Appointment"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Appointment not found"
-          }
-        }
-      },
-      "put": {
-        "summary": "Update an appointment",
-        "tags": [
-          "Appointments"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "appointmentId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The appointment ID"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Appointment"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Appointment updated successfully"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Appointment not found"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete an appointment",
-        "tags": [
-          "Appointments"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "appointmentId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The appointment ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Appointment deleted successfully"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Appointment not found"
-          }
-        }
-      }
-    },
-    "/appointments/doctor/{doctorId}": {
-      "get": {
-        "summary": "Get appointments by doctor ID",
-        "tags": [
-          "Appointments"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "doctorId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The doctor ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of appointments for the doctor",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Appointment"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Doctor not found or no appointments found for the doctor."
-          }
-        }
-      }
-    },
-    "/appointments/patient/{patientId}": {
-      "get": {
-        "summary": "Get appointments by patient ID",
-        "tags": [
-          "Appointments"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "patientId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The patient ID"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of appointments for the patient",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Appointment"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Patient not found or no appointments found for the patient."
-          }
-        }
-      }
-    },
-    "/patients": {
-      "get": {
         "summary": "Retrieve all patients",
-        "description": "Retrieve a list of all patients.",
-        "tags": [
-          "Patients"
-        ],
+        "description": "",
         "responses": {
           "200": {
-            "description": "A list of patients.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Patient"
-                  }
-                }
-              }
-            }
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "post": {
-        "summary": "Create a new patient",
-        "description": "Create a new patient record.",
         "tags": [
           "Patients"
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Patient"
+        "summary": "Create a new patient",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "dateOfBirth": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "phoneNumber": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "medicalHistory": {
+                  "example": "any"
+                }
               }
             }
           }
-        },
+        ],
         "responses": {
           "201": {
-            "description": "Patient created successfully."
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
     },
     "/patients/{patientId}": {
       "get": {
-        "summary": "Retrieve a patient by ID",
-        "description": "Retrieve a specific patient by ID.",
         "tags": [
           "Patients"
         ],
+        "summary": "Retrieve a patient by ID",
+        "description": "",
         "parameters": [
           {
-            "in": "path",
             "name": "patientId",
+            "in": "path",
             "required": true,
-            "description": "The ID of the patient to retrieve.",
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "A single patient.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Patient"
-                }
-              }
-            }
+            "description": "OK"
           },
           "404": {
-            "description": "Patient not found."
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "put": {
-        "summary": "Update a patient",
-        "description": "Update an existing patient record.",
         "tags": [
           "Patients"
         ],
+        "summary": "Update a patient by ID",
+        "description": "",
         "parameters": [
           {
-            "in": "path",
             "name": "patientId",
+            "in": "path",
             "required": true,
-            "description": "The ID of the patient to update.",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
             "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Patient"
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "dateOfBirth": {
+                  "example": "any"
+                },
+                "gender": {
+                  "example": "any"
+                },
+                "phoneNumber": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "medicalHistory": {
+                  "example": "any"
+                }
               }
             }
           }
-        },
+        ],
         "responses": {
           "200": {
-            "description": "Patient updated successfully."
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Patient not found."
+            "description": "Not Found"
           }
         }
       },
       "delete": {
-        "summary": "Delete a patient",
-        "description": "Delete a patient by ID.",
         "tags": [
           "Patients"
         ],
+        "summary": "Delete a patient by ID",
+        "description": "",
         "parameters": [
           {
-            "in": "path",
             "name": "patientId",
+            "in": "path",
             "required": true,
-            "description": "The ID of the patient to delete.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/doctors/": {
+      "get": {
+        "tags": [
+          "Doctors"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/doctors/{doctorId}": {
+      "get": {
+        "tags": [
+          "Doctors"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/appointments/": {
+      "get": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Retrieve all appointments",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Create a new appointment",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
             "schema": {
-              "type": "string"
+              "type": "object",
+              "properties": {
+                "doctorId": {
+                  "example": "any"
+                },
+                "patientId": {
+                  "example": "any"
+                },
+                "date": {
+                  "example": "any"
+                },
+                "time": {
+                  "example": "any"
+                },
+                "reason": {
+                  "example": "any"
+                },
+                "notes": {
+                  "example": "any"
+                }
+              }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "Patient deleted successfully."
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/appointments/{appointmentId}": {
+      "get": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Retrieve a appointment by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Patient not found."
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Update a appointment by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "doctorId": {
+                  "example": "any"
+                },
+                "patientId": {
+                  "example": "any"
+                },
+                "date": {
+                  "example": "any"
+                },
+                "time": {
+                  "example": "any"
+                },
+                "reason": {
+                  "example": "any"
+                },
+                "notes": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Delete a appointment by ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/appointments/doctor/{doctorId}": {
+      "get": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Retrieve a appointment by doctor ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "doctorId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/appointments/patient/{patientId}": {
+      "get": {
+        "tags": [
+          "Appointments"
+        ],
+        "summary": "Retrieve a appointment by patient ID",
+        "description": "",
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/medical-records/patient/{patientId}": {
+      "get": {
+        "tags": [
+          "MedicalRecords"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/medical-records/{recordId}": {
+      "get": {
+        "tags": [
+          "MedicalRecords"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "recordId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/prescriptions/patient/{patientId}": {
+      "get": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "patientId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/prescriptions/{prescriptionId}": {
+      "get": {
+        "tags": [
+          "Prescriptions"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "prescriptionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/refresh-token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
           }
         }
       }
