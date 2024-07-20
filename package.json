@@ -10,7 +10,7 @@
   "docs": "node docs/swagger",
   "test": "jest",
   "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
-  "lint": "eslint \"src/**/*.js\" \"docs/**/*.js\" \"test/**/*.js\""
+  "lint": "eslint \"src/**/*.js\" \"docs/**/*.js\" \"tests/**/*.js\""
 },
   "author": "Team 10",
   "license": "MIT",
