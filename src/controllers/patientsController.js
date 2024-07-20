@@ -1,31 +1,31 @@
-const Patient = require('../models/Patient');
+const Patient = require("../models/Patient");
 
 const getAllPatients = async (req, res) => {
-    // #swagger.tags=["Patients"]
-    // #swagger.summary = 'Retrieve all patients'
-    try {
-        const patients = await Patient.find();
-        res.status(200).json(patients);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
-    }
+  // #swagger.tags=["Patients"]
+  // #swagger.summary = 'Retrieve all patients'
+  try {
+    const patients = await Patient.find();
+    res.status(200).json(patients);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 };
 
 const getPatientById = async (req, res) => {
-    // #swagger.tags=["Patients"]
-    // #swagger.summary = 'Retrieve a patient by ID'
-    const { patientId } = req.params;
-    try {
-        const patient = await Patient.findById(patientId);
-        if (!patient) {
-            return res.status(404).json({ msg: 'Patient not found' });
-        }
-        res.status(200).json(patient);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
+  // #swagger.tags=["Patients"]
+  // #swagger.summary = 'Retrieve a patient by ID'
+  const { patientId } = req.params;
+  try {
+    const patient = await Patient.findById(patientId);
+    if (!patient) {
+      return res.status(404).json({ msg: "Patient not found" });
     }
+    res.status(200).json(patient);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 };
 
 const createPatient = async (req, res) => {
@@ -68,7 +68,7 @@ const updatePatientById = async (req, res) => {
     const updatedPatient = await Patient.findByIdAndUpdate(
       patientId,
       updatedInput,
-      { new: true }
+      { new: true },
     );
     if (!updatedPatient) {
       return res.status(404).json({ msg: "Patient not found" });
@@ -80,25 +80,25 @@ const updatePatientById = async (req, res) => {
 };
 
 const deletePatientById = async (req, res) => {
-    // #swagger.tags=["Patients"]
-    // #swagger.summary = 'Delete a patient by ID'
-    const { patientId } = req.params;
-    try {
-        const deletedPatient = await Patient.findByIdAndDelete(patientId);
-        if (!deletedPatient) {
-            return res.status(404).json({ msg: 'Patient not found' });
-        }
-        res.status(200).json('Patient deleted!');
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Server Error');
+  // #swagger.tags=["Patients"]
+  // #swagger.summary = 'Delete a patient by ID'
+  const { patientId } = req.params;
+  try {
+    const deletedPatient = await Patient.findByIdAndDelete(patientId);
+    if (!deletedPatient) {
+      return res.status(404).json({ msg: "Patient not found" });
     }
+    res.status(200).json("Patient deleted!");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 };
 
 module.exports = {
-    getAllPatients,
-    getPatientById,
-    createPatient,
-    updatePatientById,
-    deletePatientById
+  getAllPatients,
+  getPatientById,
+  createPatient,
+  updatePatientById,
+  deletePatientById,
 };
