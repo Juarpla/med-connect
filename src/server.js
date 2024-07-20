@@ -20,7 +20,7 @@ async function initDb() {
   console.log("Connected to MongoDB");
 }
 
-// Middleware
+// Middlewares
 app.use(bodyParser.json());
 app.use(authHelper.session);
 app.use(passport.initialize());
@@ -28,31 +28,24 @@ app.use(passport.session());
 app.use(responseConfig.setHeaders);
 app.use(authHelper.corsConfig);
 
-//passport config
+// Passport config
 passport.use(authHelper.gitHubStrategy);
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
 // Swagger UI route
 app.use("/", swaggerRoutes);
-// Auth routes
+// Auth2 routes
 app.get("/login", passport.authenticate("github"), authController.login);
 app.get(
   "/github/callback",
   passport.authenticate("github", authHelper.failureObject),
-  authController.thirdPartyAuth
+  authController.thirdPartyAuth,
 );
-app.get("/", (req, res) => {
-  //#swagger.tags=["Home"]
-  res.send(
-    req.session.user !== undefined
-      ? `Logged in as ${req.session.user.displayName}`
-      : "Logged Out",
-  );
-});
 // MedConnect CRUD routes
 app.use("/", medConnectRoutes);
 
+// Error API Handlers
 app.use(util.handleRoteError);
 app.use(util.expressErrorHandler);
 process.on("uncaughtException", util.handleUncaughtException);

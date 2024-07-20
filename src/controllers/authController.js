@@ -9,5 +9,5 @@ exports.thirdPartyAuth = (req, res) => {
 };
 
 exports.logout = (req, res) => {
-    // Implement logout logic
+  // Implement logout logic
 };

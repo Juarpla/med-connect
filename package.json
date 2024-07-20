@@ -3,15 +3,14 @@
   "version": "1.0.0",
   "description": "Project for CSE 341: Web Services",
   "main": "server.js",
-
-"scripts": {
-  "start": "node src/server.js",
-  "dev": "nodemon src/server.js",
-  "docs": "node docs/swagger",
-  "test": "jest",
-  "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
-  "lint": "eslint \"src/**/*.js\" \"docs/**/*.js\""
-},
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "docs": "node docs/swagger",
+    "test": "jest",
+    "format": "prettier --ignore-path ./.gitignore --write \"./**/*.{html,json,js,ts,css}\"",
+    "lint": "eslint \"src/**/*.js\" \"docs/**/*.js\""
+  },
   "author": "Team 10",
   "license": "MIT",
   "dependencies": {

@@ -26,7 +26,7 @@ authHelper.gitHubStrategy = new GitHubStrategy(
     //User.findOrCreate({ githubId: profile.id }, function name(err, user) {
     return done(null, profile);
     //});
-  }
+  },
 );
 
 authHelper.failureObject = {
