@@ -11,15 +11,15 @@ const app = express();
 mongoose.set("strictQuery", false);
 initDb().catch((err) => console.log(err));
 async function initDb() {
-    await mongoose.connect(process.env.MONGODB_URL);
-    console.log("Connected to MongoDB");
+  await mongoose.connect(process.env.MONGODB_URL);
+  console.log("Connected to MongoDB");
 }
 
 // Middleware
 app.use(bodyParser.json());
 
 // Serve Swagger UI at /api-docs endpoint
-app.use("/", swaggerRoutes); 
+app.use("/", swaggerRoutes);
 // MedConnect CRUD Routes
 app.use("/", medConnectRoutes);
 
