@@ -3,7 +3,7 @@ require("dotenv").config();
 
 const host =
   process.env.NODE_ENV === "production"
-    ? "leads-directory.onrender.com"
+    ? "med-connect-xf6a.onrender.com"
     : "localhost:8080";
 
 const schemes = process.env.NODE_ENV === "production" ? ["https"] : ["http"];
