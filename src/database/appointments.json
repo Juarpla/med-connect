@@ -1,46 +1,46 @@
 [
-    {
-        "_id": {
-            "$oid": "6692fba83f042bc3984f5b2e"
-        },
-        "doctorId": {
-            "$oid": "5f8d0d55b54764421b7160a2"
-        },
-        "patientId": {
-            "$oid": "5f8d0d55b54764421b7160c4"
-        },
-        "date": {
-            "$date": "2024-02-01T00:00:00.000Z"
-        },
-        "time": "08:30",
-        "reason": "Check-up for insomnia",
-        "notes": "Patient deals with chronic insomnia.",
-        "updatedAt": {
-            "$date": "2024-07-13T22:45:44.586Z"
-        }
+  {
+    "_id": {
+      "$oid": "6692fba83f042bc3984f5b2e"
     },
-    {
-        "_id": {
-            "$oid": "6696f314e81c000165a00bce"
-        },
-        "patientId": {
-            "$oid": "5f8d0d55b54764421b7160d7"
-        },
-        "doctorId": {
-            "$oid": "5f8d0d55b54764421b7160d6"
-        },
-        "date": {
-            "$date": "2023-12-03T00:00:00.000Z"
-        },
-        "time": "16:00",
-        "reason": "Routine check-up",
-        "status": "Scheduled",
-        "createdAt": {
-            "$date": "2024-07-16T22:24:20.532Z"
-        },
-        "updatedAt": {
-            "$date": "2024-07-16T22:25:21.631Z"
-        },
-        "__v": 0
+    "doctorId": {
+      "$oid": "5f8d0d55b54764421b7160a2"
+    },
+    "patientId": {
+      "$oid": "5f8d0d55b54764421b7160c4"
+    },
+    "date": {
+      "$date": "2024-02-01T00:00:00.000Z"
+    },
+    "time": "08:30",
+    "reason": "Check-up for insomnia",
+    "notes": "Patient deals with chronic insomnia.",
+    "updatedAt": {
+      "$date": "2024-07-13T22:45:44.586Z"
     }
+  },
+  {
+    "_id": {
+      "$oid": "6696f314e81c000165a00bce"
+    },
+    "patientId": {
+      "$oid": "5f8d0d55b54764421b7160d7"
+    },
+    "doctorId": {
+      "$oid": "5f8d0d55b54764421b7160d6"
+    },
+    "date": {
+      "$date": "2023-12-03T00:00:00.000Z"
+    },
+    "time": "16:00",
+    "reason": "Routine check-up",
+    "status": "Scheduled",
+    "createdAt": {
+      "$date": "2024-07-16T22:24:20.532Z"
+    },
+    "updatedAt": {
+      "$date": "2024-07-16T22:25:21.631Z"
+    },
+    "__v": 0
+  }
 ]
