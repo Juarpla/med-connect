@@ -238,14 +238,14 @@
         "tags": [
           "Doctor"
         ],
-        "summary": "Get All Doctors",
+        "summary": "Retrieve all doctors",
         "description": "",
         "responses": {
           "200": {
             "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -253,8 +253,40 @@
         "tags": [
           "Doctor"
         ],
-        "summary": "Create New Doctor",
+        "summary": "Create a new doctor",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "example": "any"
+                },
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "specialization": {
+                  "example": "any"
+                },
+                "phoneNumber": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -265,16 +297,16 @@
         }
       }
     },
-    "/doctors/{doctorId}": {
+    "/doctors/{Id}": {
       "get": {
         "tags": [
           "Doctor"
         ],
-        "summary": "Get Doctor By ID",
+        "summary": "Retrieve a doctor by ID",
         "description": "",
         "parameters": [
           {
-            "name": "doctorId",
+            "name": "Id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -289,6 +321,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -296,14 +331,44 @@
         "tags": [
           "Doctor"
         ],
-        "summary": "Update Doctor by ID",
+        "summary": "Update a doctor by ID",
         "description": "",
         "parameters": [
           {
-            "name": "doctorId",
+            "name": "Id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "Id": {
+                  "example": "any"
+                },
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "specialization": {
+                  "example": "any"
+                },
+                "phoneNumber": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "address": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -322,11 +387,11 @@
         "tags": [
           "Doctor"
         ],
-        "summary": "Delete Doctor by ID",
+        "summary": "Delete a doctor by ID",
         "description": "",
         "parameters": [
           {
-            "name": "doctorId",
+            "name": "Id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -341,6 +406,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

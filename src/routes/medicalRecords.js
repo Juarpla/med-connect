@@ -10,6 +10,9 @@ const {
   deleteMedicalRecord,
 } = require("../controllers/medicalRecordsController");
 const isAuthenticated = require("../utils/authHelpers").isAuthenticated;
+const addDoctorRules = require("../validations/medicalRecordsValidation")();
+const addMongoIdRules = require("../validations/mongoIdValidation")();
+const checkData = require("../validations/checkDataHelper");
 
 router.get("/", getAllMedicalRecords);
 router.get("/:medicalRecordId", getMedicalRecordById);

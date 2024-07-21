@@ -1,11 +1,20 @@
-const Doctor = require('../models/doctor');
+const Doctor = require('../models/Doctor');
 
 // Create a new doctor
 const createDoctor = async (req, res) => {
   // #swagger.tags=["Doctor"]
-  // #swagger.summary = 'Create New Doctor'
+  // #swagger.summary = 'Create a new doctor'
+  const newDoctor = {
+    id: req.body.id,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    specialization: req.body.specialization,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email,
+    address: req.body.address,
+  };
   try {
-    const doctor = new Doctor(req.body);
+    const doctor = new Doctor(newDoctor);
     await doctor.save();
     res.status(201).json(doctor);
   } catch (err) {
@@ -16,38 +25,51 @@ const createDoctor = async (req, res) => {
 // Get all doctors
 const getAllDoctors = async (req, res) => {
   // #swagger.tags=["Doctor"]
-  // #swagger.summary = 'Get All Doctors'
+  // #swagger.summary = 'Retrieve all doctors'
   try {
     const doctors = await Doctor.find();
     res.status(200).json(doctors);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 };
 
 // Get a doctor by ID
 const getDoctorById = async (req, res) => {
   // #swagger.tags=["Doctor"]
-  // #swagger.summary = 'Get Doctor By ID'
+  // #swagger.summary = 'Retrieve a doctor by ID'
+  const { id } = req.params;
   try {
-    const doctor = await Doctor.findById(req.params.id);
+    const doctor = await Doctor.findById(id);
     if (!doctor) {
-      return res.status(404).json({ error: 'Doctor not found' });
+      return res.status(404).json({ msg: "Doctor not found" });
     }
     res.status(200).json(doctor);
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 };
 
 // Update a doctor by ID
 const updateDoctorById = async (req, res) => {
   // #swagger.tags=["Doctor"]
-  // #swagger.summary = 'Update Doctor by ID'
+  // #swagger.summary = 'Update a doctor by ID'
+  const updatedDoctor = {
+    id: req.body.id,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    specialization: req.body.specialization,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email,
+    address: req.body.address,
+  };
+  const { id } = req.params;
   try {
-    const doctor = await Doctor.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const doctor = await Doctor.findByIdAndUpdate(id, updatedDoctor, { new: true, runValidators: true });
     if (!doctor) {
-      return res.status(404).json({ error: 'Doctor not found' });
+      return res.status(404).json({ msg: "Doctor not found" });
     }
     res.status(200).json(doctor);
   } catch (err) {
@@ -58,17 +80,20 @@ const updateDoctorById = async (req, res) => {
 // Delete a doctor by ID
 const deleteDoctorById = async (req, res) => {
   // #swagger.tags=["Doctor"]
-  // #swagger.summary = 'Delete Doctor by ID'
+  // #swagger.summary = 'Delete a doctor by ID'
+  const { id } = req.params;
   try {
-    const doctor = await Doctor.findByIdAndDelete(req.params.id);
+    const doctor = await Doctor.findByIdAndDelete(id);
     if (!doctor) {
-      return res.status(404).json({ error: 'Doctor not found' });
+      return res.status(404).json({ msg: "Doctor not found" });
     }
     res.status(200).json({ message: 'Doctor deleted successfully' });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    console.error(err);
+    res.status(500).send("Server Error");
   }
 };
+
 
 module.exports = {
   createDoctor,
