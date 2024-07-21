@@ -1,0 +1,49 @@
+// Local
+
+//
+// MedicalRecords
+//
+# GET operations
+### All MedicalRecords
+GET http://localhost:8080/medical-records/
+
+### Specific record
+GET http://localhost:8080/medical-records/669bfcd16f34fc6a72085298
+
+# POST operations
+### New record
+POST http://localhost:8080/medical-records/
+content-type: application/json
+
+{
+    "patientId": "6692be2ae26d1c5c926b7ba3",
+    "recordDate": "2024-02-01T00:00:00.000Z",
+    "description": "Routine checkup",
+    "doctorId": "669304953f042bc3986ac8c2",
+    "notes": "A pleasant checkup with Mr. Brown, nothing out of the ordinary. Remember to ask him about his trip to Spain next visit."
+}
+
+### Update record
+PUT http://localhost:8080/medical-records/669bfcd16f34fc6a72085298
+content-type: application/json
+
+{
+    "patientId": "6692be2ae26d1c5c926b7ba3",
+    "recordDate": "2024-03-03T00:00:00.000Z",
+    "description": "Standard checkup",
+    "doctorId": "669304953f042bc3986ac8c2",
+    "notes": "Visit went well, no notes"
+}
+
+### Delete record
+DELETE http://localhost:8080/medical-records/669bfcd16f34fc6a72085298
+
+# ERRORS
+### General 404 error
+GET http://localhost:8080/abc_xyz/
+
+### Specific record GET error
+GET http://localhost:8080/medical-records/666269995f53f0a24c2679ak
+
+### Specific record DELETE error
+DELETE http://localhost:8080/medical-records/666269995f53f0a24c2679ak
