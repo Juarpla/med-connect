@@ -14,7 +14,7 @@ exports.getMedicalRecordsByDoctorId = async (req, res) => {
   // #swagger.tags=["MedicalRecords"]
   try {
     const medicalRecords = await MedicalRecord.find({
-      doctorId: req.params.doctorId,
+      doctorId: req.params.id,
     });
     if (medicalRecords.length === 0) {
       return res
@@ -31,7 +31,7 @@ exports.getMedicalRecordsByPatientId = async (req, res) => {
   // #swagger.tags=["MedicalRecords"]
   try {
     const medicalRecords = await MedicalRecord.find({
-      patientId: req.params.patientId,
+      patientId: req.params.id,
     });
     if (medicalRecords.length === 0) {
       return res
@@ -48,7 +48,7 @@ exports.getMedicalRecordById = async (req, res) => {
   // #swagger.tags=["MedicalRecords"]
   try {
     const medicalRecord = await MedicalRecord.findById(
-      req.params.medicalRecordId,
+      req.params.id,
     );
     if (!medicalRecord) {
       return res.status(404).json({ error: "Medical Record not found" });
@@ -89,7 +89,7 @@ exports.updateMedicalRecord = async (req, res) => {
   };
   try {
     const updatedMedicalRecord = await MedicalRecord.findByIdAndUpdate(
-      req.params.medicalRecordId,
+      req.params.id,
       updatedInput,
       { new: true },
     );
@@ -106,7 +106,7 @@ exports.deleteMedicalRecord = async (req, res) => {
   // #swagger.tags=["MedicalRecords"]
   try {
     const deletedMedicalRecord = await MedicalRecord.findByIdAndDelete(
-      req.params.medicalRecordId,
+      req.params.id,
     );
     if (!deletedMedicalRecord) {
       return res.status(404).json({ error: "Medical Record not found" });
