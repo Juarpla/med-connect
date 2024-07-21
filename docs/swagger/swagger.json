@@ -242,7 +242,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
+                "doctorid": {
                   "example": "any"
                 },
                 "firstName": {
@@ -322,7 +322,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "id": {
+                "doctorid": {
                   "example": "any"
                 },
                 "firstName": {
