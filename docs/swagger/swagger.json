@@ -91,14 +91,14 @@
         }
       }
     },
-    "/patients/{patientId}": {
+    "/patients/{id}": {
       "get": {
         "tags": ["Patients"],
         "summary": "Retrieve a patient by ID",
         "description": "",
         "parameters": [
           {
-            "name": "patientId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -107,6 +107,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -122,7 +125,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "patientId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -179,7 +182,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "patientId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -188,6 +191,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
