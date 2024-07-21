@@ -7,9 +7,7 @@
   },
   "host": "localhost:8080",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "securityDefinitions": {
     "oauth2": {
       "type": "oauth2",
@@ -21,9 +19,7 @@
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Home"
-        ],
+        "tags": ["Home"],
         "summary": "Shows the user login status",
         "description": "",
         "responses": {
@@ -35,9 +31,7 @@
     },
     "/auth/logout": {
       "post": {
-        "tags": [
-          "Auth"
-        ],
+        "tags": ["Auth"],
         "summary": "Logout a user",
         "description": "",
         "responses": {
@@ -49,9 +43,7 @@
     },
     "/patients/": {
       "get": {
-        "tags": [
-          "Patients"
-        ],
+        "tags": ["Patients"],
         "summary": "Retrieve all patients",
         "description": "",
         "responses": {
@@ -64,9 +56,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Patients"
-        ],
+        "tags": ["Patients"],
         "summary": "Create a new patient",
         "description": "",
         "parameters": [
@@ -116,9 +106,7 @@
     },
     "/patients/{id}": {
       "get": {
-        "tags": [
-          "Patients"
-        ],
+        "tags": ["Patients"],
         "summary": "Retrieve a patient by ID",
         "description": "",
         "parameters": [
@@ -145,9 +133,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Patients"
-        ],
+        "tags": ["Patients"],
         "summary": "Update a patient by ID",
         "description": "",
         "parameters": [
@@ -204,9 +190,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Patients"
-        ],
+        "tags": ["Patients"],
         "summary": "Delete a patient by ID",
         "description": "",
         "parameters": [
@@ -235,9 +219,7 @@
     },
     "/doctors/": {
       "get": {
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "summary": "Retrieve all doctors",
         "description": "",
         "responses": {
@@ -250,9 +232,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "summary": "Create a new doctor",
         "description": "",
         "parameters": [
@@ -299,9 +279,7 @@
     },
     "/doctors/{id}": {
       "get": {
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "summary": "Retrieve a doctor by ID",
         "description": "",
         "parameters": [
@@ -328,9 +306,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "summary": "Update a doctor by ID",
         "description": "",
         "parameters": [
@@ -384,9 +360,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Doctor"
-        ],
+        "tags": ["Doctor"],
         "summary": "Delete a doctor by ID",
         "description": "",
         "parameters": [
@@ -415,9 +389,7 @@
     },
     "/appointments/": {
       "get": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "summary": "Retrieve all appointments",
         "description": "",
         "responses": {
@@ -430,9 +402,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "summary": "Create a new appointment",
         "description": "",
         "parameters": [
@@ -474,16 +444,14 @@
         }
       }
     },
-    "/appointments/{appointmentId}": {
+    "/appointments/{id}": {
       "get": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "summary": "Retrieve a appointment by ID",
         "description": "",
         "parameters": [
           {
-            "name": "appointmentId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -502,14 +470,12 @@
         }
       },
       "put": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "summary": "Update a appointment by ID",
         "description": "",
         "parameters": [
           {
-            "name": "appointmentId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -555,14 +521,12 @@
         }
       },
       "delete": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "summary": "Delete a appointment by ID",
         "description": "",
         "parameters": [
           {
-            "name": "appointmentId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -581,16 +545,14 @@
         }
       }
     },
-    "/appointments/doctor/{doctorId}": {
+    "/appointments/doctor/{id}": {
       "get": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "summary": "Retrieve a appointment by doctor ID",
         "description": "",
         "parameters": [
           {
-            "name": "doctorId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -609,16 +571,14 @@
         }
       }
     },
-    "/appointments/patient/{patientId}": {
+    "/appointments/patient/{id}": {
       "get": {
-        "tags": [
-          "Appointments"
-        ],
+        "tags": ["Appointments"],
         "summary": "Retrieve a appointment by patient ID",
         "description": "",
         "parameters": [
           {
-            "name": "patientId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -639,9 +599,7 @@
     },
     "/medical-records/": {
       "get": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "description": "",
         "responses": {
           "200": {
@@ -653,9 +611,7 @@
         }
       },
       "post": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
@@ -695,9 +651,7 @@
     },
     "/medical-records/{id}": {
       "get": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
@@ -720,9 +674,7 @@
         }
       },
       "put": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
@@ -772,9 +724,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
@@ -799,9 +749,7 @@
     },
     "/medical-records/doctor/{id}": {
       "get": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
@@ -826,9 +774,7 @@
     },
     "/medical-records/patient/{id}": {
       "get": {
-        "tags": [
-          "MedicalRecords"
-        ],
+        "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
@@ -853,9 +799,7 @@
     },
     "/prescriptions/patient/{patientId}": {
       "get": {
-        "tags": [
-          "Prescriptions"
-        ],
+        "tags": ["Prescriptions"],
         "description": "",
         "parameters": [
           {
@@ -877,9 +821,7 @@
     },
     "/prescriptions/{prescriptionId}": {
       "get": {
-        "tags": [
-          "Prescriptions"
-        ],
+        "tags": ["Prescriptions"],
         "description": "",
         "parameters": [
           {

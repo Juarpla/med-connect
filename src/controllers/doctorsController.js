@@ -1,4 +1,4 @@
-const Doctor = require('../models/Doctor');
+const Doctor = require("../models/Doctor");
 
 // Create a new doctor
 const createDoctor = async (req, res) => {
@@ -67,7 +67,10 @@ const updateDoctorById = async (req, res) => {
   };
   const { id } = req.params;
   try {
-    const doctor = await Doctor.findByIdAndUpdate(id, updatedDoctor, { new: true, runValidators: true });
+    const doctor = await Doctor.findByIdAndUpdate(id, updatedDoctor, {
+      new: true,
+      runValidators: true,
+    });
     if (!doctor) {
       return res.status(404).json({ msg: "Doctor not found" });
     }
@@ -87,18 +90,17 @@ const deleteDoctorById = async (req, res) => {
     if (!doctor) {
       return res.status(404).json({ msg: "Doctor not found" });
     }
-    res.status(200).json({ message: 'Doctor deleted successfully' });
+    res.status(200).json({ message: "Doctor deleted successfully" });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
   }
 };
 
-
 module.exports = {
   createDoctor,
   getAllDoctors,
   getDoctorById,
   updateDoctorById,
-  deleteDoctorById
+  deleteDoctorById,
 };

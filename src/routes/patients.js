@@ -6,22 +6,19 @@ const addPatientRules = require("../validations/patientValidation")();
 const addMongoIdRules = require("../validations/mongoIdValidation")();
 const checkData = require("../validations/checkDataHelper");
 
-router.get(
-  "/",
-  patientsController.getAllPatients
-);
+router.get("/", patientsController.getAllPatients);
 router.get(
   "/:id",
   addMongoIdRules,
   checkData,
-  patientsController.getPatientById
+  patientsController.getPatientById,
 );
 router.post(
   "/",
   isAuthenticated,
   addPatientRules,
   checkData,
-  patientsController.createPatient
+  patientsController.createPatient,
 );
 router.put(
   "/:id",
@@ -29,14 +26,14 @@ router.put(
   addMongoIdRules,
   addPatientRules,
   checkData,
-  patientsController.updatePatientById
+  patientsController.updatePatientById,
 );
 router.delete(
   "/:id",
   isAuthenticated,
   addMongoIdRules,
   checkData,
-  patientsController.deletePatientById
+  patientsController.deletePatientById,
 );
 
 module.exports = router;

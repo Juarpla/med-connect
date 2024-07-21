@@ -47,9 +47,7 @@ exports.getMedicalRecordsByPatientId = async (req, res) => {
 exports.getMedicalRecordById = async (req, res) => {
   // #swagger.tags=["MedicalRecords"]
   try {
-    const medicalRecord = await MedicalRecord.findById(
-      req.params.id,
-    );
+    const medicalRecord = await MedicalRecord.findById(req.params.id);
     if (!medicalRecord) {
       return res.status(404).json({ error: "Medical Record not found" });
     }
