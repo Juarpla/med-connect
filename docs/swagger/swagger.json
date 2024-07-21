@@ -242,7 +242,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "Id": {
+                "id": {
                   "example": "any"
                 },
                 "firstName": {
@@ -277,14 +277,14 @@
         }
       }
     },
-    "/doctors/{Id}": {
+    "/doctors/{id}": {
       "get": {
         "tags": ["Doctor"],
         "summary": "Retrieve a doctor by ID",
         "description": "",
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -311,7 +311,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -322,7 +322,7 @@
             "schema": {
               "type": "object",
               "properties": {
-                "Id": {
+                "id": {
                   "example": "any"
                 },
                 "firstName": {
@@ -365,7 +365,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -444,14 +444,14 @@
         }
       }
     },
-    "/appointments/{appointmentId}": {
+    "/appointments/{id}": {
       "get": {
         "tags": ["Appointments"],
         "summary": "Retrieve a appointment by ID",
         "description": "",
         "parameters": [
           {
-            "name": "appointmentId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -475,7 +475,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "appointmentId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -526,7 +526,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "appointmentId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -545,14 +545,14 @@
         }
       }
     },
-    "/appointments/doctor/{doctorId}": {
+    "/appointments/doctor/{id}": {
       "get": {
         "tags": ["Appointments"],
         "summary": "Retrieve a appointment by doctor ID",
         "description": "",
         "parameters": [
           {
-            "name": "doctorId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -571,14 +571,14 @@
         }
       }
     },
-    "/appointments/patient/{patientId}": {
+    "/appointments/patient/{id}": {
       "get": {
         "tags": ["Appointments"],
         "summary": "Retrieve a appointment by patient ID",
         "description": "",
         "parameters": [
           {
-            "name": "patientId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -649,13 +649,13 @@
         }
       }
     },
-    "/medical-records/{medicalRecordId}": {
+    "/medical-records/{id}": {
       "get": {
         "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
-            "name": "medicalRecordId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -678,7 +678,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "medicalRecordId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -728,7 +728,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "medicalRecordId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -747,13 +747,13 @@
         }
       }
     },
-    "/medical-records/doctor/{doctorId}": {
+    "/medical-records/doctor/{id}": {
       "get": {
         "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
-            "name": "doctorId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -772,13 +772,13 @@
         }
       }
     },
-    "/medical-records/patient/{patientId}": {
+    "/medical-records/patient/{id}": {
       "get": {
         "tags": ["MedicalRecords"],
         "description": "",
         "parameters": [
           {
-            "name": "patientId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
