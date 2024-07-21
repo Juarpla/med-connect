@@ -8,6 +8,13 @@ exports.thirdPartyAuth = (req, res) => {
   res.redirect("/");
 };
 
-exports.logout = (req, res) => {
-  // Implement logout logic
+exports.logout = (req, res, next) => {
+  // #swagger.tags=["Auth"]
+  // #swagger.summary = "Logout a user"
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
 };

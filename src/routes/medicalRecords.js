@@ -1,11 +1,21 @@
 const express = require("express");
 const router = express.Router();
-const medicalRecordsController = require("../controllers/medicalRecordsController");
+const {
+  getAllMedicalRecords,
+  getMedicalRecordById,
+  getMedicalRecordsByDoctorId,
+  getMedicalRecordsByPatientId,
+  createMedicalRecord,
+  updateMedicalRecord,
+  deleteMedicalRecord,
+} = require("../controllers/medicalRecordsController");
 
-router.get(
-  "/patient/:patientId",
-  medicalRecordsController.getMedicalRecordsByPatient,
-);
-router.get("/:recordId", medicalRecordsController.getMedicalRecordById);
+router.get("/", getAllMedicalRecords);
+router.get("/:medicalRecordId", getMedicalRecordById);
+router.get("/doctor/:doctorId", getMedicalRecordsByDoctorId);
+router.get("/patient/:patientId", getMedicalRecordsByPatientId);
+router.post("/", createMedicalRecord);
+router.put("/:medicalRecordId", updateMedicalRecord);
+router.delete("/:medicalRecordId", deleteMedicalRecord);
 
 module.exports = router;
