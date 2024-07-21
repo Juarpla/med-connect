@@ -9,13 +9,14 @@ const {
   updateMedicalRecord,
   deleteMedicalRecord,
 } = require("../controllers/medicalRecordsController");
+const isAuthenticated = require("../utils/authHelpers").isAuthenticated;
 
 router.get("/", getAllMedicalRecords);
 router.get("/:medicalRecordId", getMedicalRecordById);
 router.get("/doctor/:doctorId", getMedicalRecordsByDoctorId);
 router.get("/patient/:patientId", getMedicalRecordsByPatientId);
-router.post("/", createMedicalRecord);
-router.put("/:medicalRecordId", updateMedicalRecord);
-router.delete("/:medicalRecordId", deleteMedicalRecord);
+router.post("/", isAuthenticated, createMedicalRecord);
+router.put("/:medicalRecordId", isAuthenticated, updateMedicalRecord);
+router.delete("/:medicalRecordId", isAuthenticated, deleteMedicalRecord);
 
 module.exports = router;
