@@ -8,8 +8,27 @@ const checkData = require("../validations/checkDataHelper");
 
 router.get("/", doctorsController.getAllDoctors);
 router.get("/:id", addMongoIdRules, checkData, doctorsController.getDoctorById);
-router.post("/", isAuthenticated, addDoctorRules, checkData, doctorsController.createDoctor);
-router.put("/:id", isAuthenticated, addMongoIdRules, addDoctorRules, checkData, doctorsController.updateDoctorById);
-router.delete("/:id", isAuthenticated, addMongoIdRules, checkData, doctorsController.deleteDoctorById);
+router.post(
+  "/",
+  isAuthenticated,
+  addDoctorRules,
+  checkData,
+  doctorsController.createDoctor,
+);
+router.put(
+  "/:id",
+  isAuthenticated,
+  addMongoIdRules,
+  addDoctorRules,
+  checkData,
+  doctorsController.updateDoctorById,
+);
+router.delete(
+  "/:id",
+  isAuthenticated,
+  addMongoIdRules,
+  checkData,
+  doctorsController.deleteDoctorById,
+);
 
 module.exports = router;
