@@ -21,15 +21,15 @@ describe("Doctors Controller", () => {
         specialization: "Test",
         phoneNumber: "Test",
         email: "Test",
-        address: "Test"
-      }
+        address: "Test",
+      };
 
       Doctor.findById.mockResolvedValue(mockDoctorRecords);
 
       const req = { params: "777" };
       const res = {
         status: jest.fn().mockReturnThis(),
-        json: jest.fn()
+        json: jest.fn(),
       };
 
       await getDoctorById(req, res);
@@ -43,7 +43,7 @@ describe("Doctors Controller", () => {
       const req = { params: "777" };
       const res = {
         status: jest.fn().mockReturnThis(),
-        json: jest.fn()
+        json: jest.fn(),
       };
 
       await getDoctorById(req, res);

@@ -15,7 +15,7 @@ const getAppointmentById = async (req, res) => {
   // #swagger.tags=["Appointments"]
   // #swagger.summary = 'Retrieve a appointment by ID'
   try {
-    const appointment = await Appointment.findById(req.params.appointmentId);
+    const appointment = await Appointment.findById(req.params.id);
     if (!appointment) {
       return res.status(404).json({ error: "Appointment not found" });
     }
@@ -30,7 +30,7 @@ const getAppointmentsByDoctorId = async (req, res) => {
   // #swagger.summary = 'Retrieve a appointment by doctor ID'
   try {
     const appointments = await Appointment.find({
-      doctorId: req.params.doctorId,
+      doctorId: req.params.id,
     });
     if (appointments.length === 0) {
       return res
@@ -48,7 +48,7 @@ const getAppointmentsByPatientId = async (req, res) => {
   // #swagger.summary = 'Retrieve a appointment by patient ID'
   try {
     const appointments = await Appointment.find({
-      patientId: req.params.patientId,
+      patientId: req.params.id,
     });
     if (appointments.length === 0) {
       return res
@@ -94,7 +94,7 @@ const updateAppointment = async (req, res) => {
   };
   try {
     const updatedAppointment = await Appointment.findByIdAndUpdate(
-      req.params.appointmentId,
+      req.params.id,
       updatedInput,
       { new: true },
     );
@@ -112,7 +112,7 @@ const deleteAppointment = async (req, res) => {
   // #swagger.summary = 'Delete a appointment by ID'
   try {
     const deletedAppointment = await Appointment.findByIdAndDelete(
-      req.params.appointmentId,
+      req.params.id,
     );
     if (!deletedAppointment) {
       return res.status(404).json({ error: "Appointment not found" });

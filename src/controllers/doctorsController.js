@@ -1,4 +1,4 @@
-const Doctor = require('../models/doctor');
+const Doctor = require("../models/doctor");
 
 // Create a new doctor
 const createDoctor = async (req, res) => {
@@ -32,7 +32,7 @@ const getDoctorById = async (req, res) => {
   try {
     const doctor = await Doctor.findById(req.params.id);
     if (!doctor) {
-      return res.status(404).json({ error: 'Doctor not found' });
+      return res.status(404).json({ error: "Doctor not found" });
     }
     res.status(200).json(doctor);
   } catch (err) {
@@ -45,9 +45,12 @@ const updateDoctorById = async (req, res) => {
   // #swagger.tags=["Doctor"]
   // #swagger.summary = 'Update Doctor by ID'
   try {
-    const doctor = await Doctor.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+    const doctor = await Doctor.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
     if (!doctor) {
-      return res.status(404).json({ error: 'Doctor not found' });
+      return res.status(404).json({ error: "Doctor not found" });
     }
     res.status(200).json(doctor);
   } catch (err) {
@@ -62,9 +65,9 @@ const deleteDoctorById = async (req, res) => {
   try {
     const doctor = await Doctor.findByIdAndDelete(req.params.id);
     if (!doctor) {
-      return res.status(404).json({ error: 'Doctor not found' });
+      return res.status(404).json({ error: "Doctor not found" });
     }
-    res.status(200).json({ message: 'Doctor deleted successfully' });
+    res.status(200).json({ message: "Doctor deleted successfully" });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -75,5 +78,5 @@ module.exports = {
   getAllDoctors,
   getDoctorById,
   updateDoctorById,
-  deleteDoctorById
+  deleteDoctorById,
 };
