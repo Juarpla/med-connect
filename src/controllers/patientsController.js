@@ -15,9 +15,9 @@ const getAllPatients = async (req, res) => {
 const getPatientById = async (req, res) => {
   // #swagger.tags=["Patients"]
   // #swagger.summary = 'Retrieve a patient by ID'
-  const { patientId } = req.params;
+  const { id } = req.params;
   try {
-    const patient = await Patient.findById(patientId);
+    const patient = await Patient.findById(id);
     if (!patient) {
       return res.status(404).json({ msg: "Patient not found" });
     }
@@ -63,13 +63,11 @@ const updatePatientById = async (req, res) => {
     address: req.body.address,
     medicalHistory: req.body.medicalHistory,
   };
-  const { patientId } = req.params;
+  const { id } = req.params;
   try {
-    const updatedPatient = await Patient.findByIdAndUpdate(
-      patientId,
-      updatedInput,
-      { new: true },
-    );
+    const updatedPatient = await Patient.findByIdAndUpdate(id, updatedInput, {
+      new: true,
+    });
     if (!updatedPatient) {
       return res.status(404).json({ msg: "Patient not found" });
     }
@@ -82,9 +80,9 @@ const updatePatientById = async (req, res) => {
 const deletePatientById = async (req, res) => {
   // #swagger.tags=["Patients"]
   // #swagger.summary = 'Delete a patient by ID'
-  const { patientId } = req.params;
+  const { id } = req.params;
   try {
-    const deletedPatient = await Patient.findByIdAndDelete(patientId);
+    const deletedPatient = await Patient.findByIdAndDelete(id);
     if (!deletedPatient) {
       return res.status(404).json({ msg: "Patient not found" });
     }
