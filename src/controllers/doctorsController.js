@@ -5,7 +5,7 @@ const createDoctor = async (req, res) => {
   // #swagger.tags=["Doctor"]
   // #swagger.summary = 'Create a new doctor'
   const newDoctor = {
-    Id: req.body.Id,
+    id: req.body.id,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     specialization: req.body.specialization,
@@ -39,9 +39,9 @@ const getAllDoctors = async (req, res) => {
 const getDoctorById = async (req, res) => {
   // #swagger.tags=["Doctor"]
   // #swagger.summary = 'Retrieve a doctor by ID'
-  const { Id } = req.params;
+  const { id } = req.params;
   try {
-    const doctor = await Doctor.findById(Id);
+    const doctor = await Doctor.findById(id);
     if (!doctor) {
       return res.status(404).json({ msg: "Doctor not found" });
     }
@@ -57,7 +57,7 @@ const updateDoctorById = async (req, res) => {
   // #swagger.tags=["Doctor"]
   // #swagger.summary = 'Update a doctor by ID'
   const updatedDoctor = {
-    Id: req.body.Id,
+    id: req.body.id,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     specialization: req.body.specialization,
@@ -65,9 +65,9 @@ const updateDoctorById = async (req, res) => {
     email: req.body.email,
     address: req.body.address,
   };
-  const { Id } = req.params;
+  const { id } = req.params;
   try {
-    const doctor = await Doctor.findByIdAndUpdate(Id, updatedDoctor, { new: true, runValidators: true });
+    const doctor = await Doctor.findByIdAndUpdate(id, updatedDoctor, { new: true, runValidators: true });
     if (!doctor) {
       return res.status(404).json({ msg: "Doctor not found" });
     }
@@ -81,9 +81,9 @@ const updateDoctorById = async (req, res) => {
 const deleteDoctorById = async (req, res) => {
   // #swagger.tags=["Doctor"]
   // #swagger.summary = 'Delete a doctor by ID'
-  const { Id } = req.params;
+  const { id } = req.params;
   try {
-    const doctor = await Doctor.findByIdAndDelete(Id);
+    const doctor = await Doctor.findByIdAndDelete(id);
     if (!doctor) {
       return res.status(404).json({ msg: "Doctor not found" });
     }
