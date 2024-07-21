@@ -15,20 +15,8 @@ router.get("/", getAllAppointments);
 router.get("/:appointmentId", getAppointmentById);
 router.get("/doctor/:doctorId", getAppointmentsByDoctorId);
 router.get("/patient/:patientId", getAppointmentsByPatientId);
-router.post(
-  "/",
-  isAuthenticated,
-  createAppointment
-);
-router.put(
-  "/:appointmentId",
-  isAuthenticated,
-  updateAppointment
-);
-router.delete(
-  "/:appointmentId",
-  isAuthenticated,
-  deleteAppointment
-);
+router.post("/", isAuthenticated, createAppointment);
+router.put("/:appointmentId", isAuthenticated, updateAppointment);
+router.delete("/:appointmentId", isAuthenticated, deleteAppointment);
 
 module.exports = router;

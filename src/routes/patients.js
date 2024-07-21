@@ -5,20 +5,16 @@ const isAuthenticated = require("../utils/authHelpers").isAuthenticated;
 
 router.get("/", patientsController.getAllPatients);
 router.get("/:patientId", patientsController.getPatientById);
-router.post(
-    "/",
-    isAuthenticated,
-    patientsController.createPatient
-);
+router.post("/", isAuthenticated, patientsController.createPatient);
 router.put(
-    "/:patientId",
-    isAuthenticated,
-    patientsController.updatePatientById
+  "/:patientId",
+  isAuthenticated,
+  patientsController.updatePatientById,
 );
 router.delete(
-    "/:patientId",
-    isAuthenticated,
-    patientsController.deletePatientById
+  "/:patientId",
+  isAuthenticated,
+  patientsController.deletePatientById,
 );
 
 module.exports = router;
