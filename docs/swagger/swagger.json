@@ -796,50 +796,6 @@
           }
         }
       }
-    },
-    "/prescriptions/patient/{patientId}": {
-      "get": {
-        "tags": ["Prescriptions"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "patientId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
-    "/prescriptions/{prescriptionId}": {
-      "get": {
-        "tags": ["Prescriptions"],
-        "description": "",
-        "parameters": [
-          {
-            "name": "prescriptionId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
     }
   }
 }
