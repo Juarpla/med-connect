@@ -2,6 +2,7 @@ const Prescription = require("../models/Prescription");
 
 // Controller methods
 exports.getPrescriptionsByPatient = (req, res) => {
+  // #swagger.ignore = true
   //#swagger.tags=["Prescriptions"]
   Prescription.find({ patientId: req.params.patientId })
     .then((prescriptions) => res.json(prescriptions))
@@ -9,6 +10,7 @@ exports.getPrescriptionsByPatient = (req, res) => {
 };
 
 exports.getPrescriptionById = (req, res) => {
+  // #swagger.ignore = true
   //#swagger.tags=["Prescriptions"]
   Prescription.findById(req.params.prescriptionId)
     .then((prescription) => res.json(prescription))
