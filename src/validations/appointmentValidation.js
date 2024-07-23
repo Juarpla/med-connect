@@ -31,16 +31,6 @@ const addAppointmentRules = () => [
     .matches(/^([01]\d|2[0-3]):([0-5]\d)$/)
     .withMessage("Invalid time format. Use HH:MM"),
 
-  body("address")
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage("Address is required")
-    .isString()
-    .withMessage("Address must be a string")
-    .isLength({ min: 10, max: 200 })
-    .withMessage("Address must be between 10 and 200 characters"),
-
   body("status")
     .optional()
     .isString()

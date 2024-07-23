@@ -65,12 +65,12 @@ const createAppointment = async (req, res) => {
   // #swagger.tags=["Appointments"]
   // #swagger.summary = 'Create a new appointment'
   const newInput = {
-    doctorId: req.body.doctorId,
     patientId: req.body.patientId,
+    doctorId: req.body.doctorId,
     date: req.body.date,
     time: req.body.time,
     reason: req.body.reason,
-    notes: req.body.notes,
+    status: req.body.status,
   };
   try {
     const newAppointment = new Appointment(newInput);
@@ -85,12 +85,12 @@ const updateAppointment = async (req, res) => {
   // #swagger.tags=["Appointments"]
   // #swagger.summary = 'Update a appointment by ID'
   const updatedInput = {
-    doctorId: req.body.doctorId,
     patientId: req.body.patientId,
+    doctorId: req.body.doctorId,
     date: req.body.date,
     time: req.body.time,
     reason: req.body.reason,
-    notes: req.body.notes,
+    status: req.body.status,
   };
   try {
     const updatedAppointment = await Appointment.findByIdAndUpdate(

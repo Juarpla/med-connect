@@ -412,10 +412,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "doctorId": {
+                "patientId": {
                   "example": "any"
                 },
-                "patientId": {
+                "doctorId": {
                   "example": "any"
                 },
                 "date": {
@@ -427,7 +427,7 @@
                 "reason": {
                   "example": "any"
                 },
-                "notes": {
+                "status": {
                   "example": "any"
                 }
               }
@@ -486,10 +486,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "doctorId": {
+                "patientId": {
                   "example": "any"
                 },
-                "patientId": {
+                "doctorId": {
                   "example": "any"
                 },
                 "date": {
@@ -501,7 +501,7 @@
                 "reason": {
                   "example": "any"
                 },
-                "notes": {
+                "status": {
                   "example": "any"
                 }
               }
