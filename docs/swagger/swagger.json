@@ -242,9 +242,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "doctorid": {
-                  "example": "any"
-                },
                 "firstName": {
                   "example": "any"
                 },
@@ -322,9 +319,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "doctorid": {
-                  "example": "any"
-                },
                 "firstName": {
                   "example": "any"
                 },

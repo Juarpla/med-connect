@@ -5,7 +5,6 @@ const createDoctor = async (req, res) => {
   // #swagger.tags=["Doctor"]
   // #swagger.summary = 'Create a new doctor'
   const newDoctor = {
-    doctorid: req.body.doctorid,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     specialization: req.body.specialization,
@@ -57,7 +56,6 @@ const updateDoctorById = async (req, res) => {
   // #swagger.tags=["Doctor"]
   // #swagger.summary = 'Update a doctor by ID'
   const updatedDoctor = {
-    doctorid: req.body.doctorid,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     specialization: req.body.specialization,
