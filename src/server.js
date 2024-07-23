@@ -46,7 +46,7 @@ app.get(
 app.use("/", medConnectRoutes);
 
 // Error API Handlers
-app.use(util.handleRoteError);
+app.use(util.handleRouteError);
 app.use(util.expressErrorHandler);
 process.on("uncaughtException", util.handleUncaughtException);
 process.on("unhandledRejection", util.handleUnhandledRejection);

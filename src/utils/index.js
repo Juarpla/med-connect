@@ -3,7 +3,7 @@ const util = {};
 util.handleErrors = (fn) => (req, res, next) =>
   Promise.resolve(fn(req, res, next)).catch(next);
 
-util.handleRoteError = async (req, res, next) => {
+util.handleRouteError = async (req, res, next) => {
   next({ status: 404, message: "Try a different route" });
 };
 
