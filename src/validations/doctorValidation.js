@@ -1,16 +1,6 @@
 const { body } = require("express-validator");
 
 const addDoctorRules = () => [
-  body("doctorId")
-    .trim()
-    .escape()
-    .notEmpty()
-    .withMessage("Doctor ID is required")
-    .isString()
-    .withMessage("Doctor ID must be a string")
-    .isLength({ min: 1 })
-    .withMessage("Doctor ID cannot be empty"),
-
   body("firstName")
     .trim()
     .escape()
