@@ -9,6 +9,7 @@ const passport = require("passport");
 const responseConfig = require("./utils/responseConfig");
 const authController = require("./controllers/authController");
 const authHelper = require("./utils/authHelpers");
+const favicon = require("serve-favicon");
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(responseConfig.setHeaders);
 app.use(authHelper.corsConfig);
+app.use(favicon("public/favicon.ico"));
 
 // Passport config
 passport.use(authHelper.gitHubStrategy);
